@@ -30,3 +30,9 @@ post '/items' do
     redirect '/items/new'
   end
 end
+
+post '/validation' do
+  name = params[:user_name]
+  password = params[:password]
+  @user = User.new(name: name, password: password)
+end
