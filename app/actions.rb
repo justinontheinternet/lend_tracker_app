@@ -7,9 +7,26 @@ get '/' do
   erb :index
 end
 
+get '/users' do
+  @users = User.all
+  erb :'users/index'
+end
+
 get '/items' do
   @items = Item.all
   erb :'items/index'
+end
+
+post '/validation' do
+  user_name = params[:user_name]
+  password = params[:password]
+  @user = User.find_by(user_name: user_name, password: password)
+  if @user
+    session[:user_id] = @user.id
+    redirect '/items'
+  else
+    redirect '/users/signup'
+  end
 end
 
 get '/items/new' do
@@ -28,17 +45,5 @@ post '/items' do
     redirect '/items'
   else
     redirect '/items/new'
-  end
-end
-
-post '/validation' do
-  user_name = params[:user_name]
-  password = params[:password]
-  @user = User.find_by(user_name: user_name, password: password)
-  if @user
-    session[:user_id] = @user.id
-    redirect '/items'
-  else
-    redirect '/users/signup'
   end
 end
