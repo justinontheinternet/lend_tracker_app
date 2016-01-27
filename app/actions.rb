@@ -1,6 +1,6 @@
-# def current_user
-#   User.find(session[:user_id]) if session[:user_id]
-# end
+def current_user
+  User.find(session[:user_id]) if session[:user_id]
+end
 
 # Homepage (Root path)
 get '/' do
@@ -28,5 +28,16 @@ post '/items' do
     redirect '/items'
   else
     redirect '/items/new'
+  end
+end
+
+post '/validation' do
+  user_name = params[:user_name]
+  password = params[:password]
+  @user = User.find_by(user_name: user_name, password: password)
+  if @user
+    session[:user_id] = @user.id
+  else
+    redirect '/users/signup'
   end
 end
