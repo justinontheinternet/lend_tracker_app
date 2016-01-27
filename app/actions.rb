@@ -37,6 +37,7 @@ post '/validation' do
   @user = User.find_by(user_name: user_name, password: password)
   if @user
     session[:user_id] = @user.id
+    redirect '/items'
   else
     redirect '/users/signup'
   end
