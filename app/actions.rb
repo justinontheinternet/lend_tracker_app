@@ -34,7 +34,6 @@ post '/validation' do
 end
 
 get '/items/new' do
-  @item = Item.new
   erb :'items/new'
 end
 
