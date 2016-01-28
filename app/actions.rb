@@ -83,6 +83,15 @@ post '/items/:id/borrow' do
   end
 end
 
+post '/items/:id/return' do
+  item = Item.find(params[:id])
+  if item.loan.destroy
+    redirect '/users/#{current_user.id}'
+  else
+    redirect '/users/#{current_user.id}'
+  end
+end
+
 get '/users/:id' do
   if params[:id] == current_user.id
     @user = User.find(current_user.id)
