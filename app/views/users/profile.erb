@@ -16,6 +16,11 @@
 <% @items.each do |item| %>
 <% if item.loan %>
   <a href="/items/<%= item.id %>"><%= item.name %></a>
+    <br />
+    To: <%= item.loan.user.user_name %>
+    <br />
+    Lent On:
+    <%= item.loan.checkout %>
   <% end %>
 <% end %>
 
@@ -25,8 +30,11 @@
     <p>
       <%= loan.item.name %>
       <br />
-      borrowed:
+      Borrowed:
       <%= loan.checkout %>
+      <br />
+      From:
+      <%= loan.item.user.user_name %>
     </p>
   <% end %>
 <% end %>
