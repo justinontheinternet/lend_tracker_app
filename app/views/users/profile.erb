@@ -1,10 +1,19 @@
 <h1>
-<%= @user.user_name %>
+<%= current_user.user_name %>
 </h1>
+<h3>
+<%= @user.user_name %>
+</h3>
+
 <% @items.each do |item| %>
 <%= item.name %>
 <% end %>
 
+<% if current_user.id == @user.id %>
 <p>
   <a href="/items/new">Add an item</a>
+</p>
+<% end %>
+<p>
+<a href="/logout">Logout</a>
 </p>
