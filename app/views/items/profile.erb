@@ -2,19 +2,14 @@
 <%= current_user.user_name %>
 </h1>
 <h3>
-<%= @user.user_name %>
+<%= @item.user.user_name %>
+</h3>
+<h3>
+<%= @item.name %>
 </h3>
 
-<% @items.each do |item| %>
+<% @item.description %>
 <a href="/items/<%= item.id %>"><%= item.name %></a>
-<% end %>
-
-<% if current_user.id == @user.id %>
-
-<p>
-  <a href="/items/new">Add an item</a>
-</p>
-<% end %>
 
 <p>
   <a href="/users">Other Users</a>
