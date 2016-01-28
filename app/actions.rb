@@ -2,16 +2,18 @@ def current_user
   User.find(session[:user_id]) if session[:user_id]
 end
 
-# Homepage (Root path)
+# Homepage/Login page
 get '/' do
   erb :index
 end
 
+#lists all users
 get '/users' do
   @users = User.all
   erb :'users/index'
 end
 
+#Signup page
 get '/users/signup' do
   erb :'users/signup'
 end
@@ -21,6 +23,7 @@ get '/items' do
   erb :'items/index'
 end
 
+#After sign up, creats a new user.
 post '/users' do
   user_name = params[:user_name]
   password = params[:password]
@@ -33,6 +36,7 @@ post '/users' do
   end
 end
 
+#Validates that user exists when logging in
 post '/validation' do
   user_name = params[:user_name]
   password = params[:password]
@@ -45,10 +49,12 @@ post '/validation' do
   end
 end
 
+#Item add page
 get '/items/new' do
   erb :'items/new'
 end
 
+#Creates a new item. Auto-assigned to user who creates it (via model)
 post '/items' do
   name = params[:name]
   description = params[:description]
@@ -64,11 +70,14 @@ post '/items' do
   end
 end
 
+#Item profile/status page
 get '/items/:id' do
   @item = Item.find(params[:id])
   erb :'items/profile'
 end
 
+#Creates a loan when a user borrows an item.
+#Ties the loan to that user.
 post '/items/:id/borrow' do
   user = Item.find(params[:id]).user
   @loan = Loan.new(
@@ -83,6 +92,7 @@ post '/items/:id/borrow' do
   end
 end
 
+#Current user confirms an item has been returned, terminating loan.
 post '/items/:id/return' do
   item = Item.find(params[:id])
   if item.loan.destroy
@@ -92,6 +102,7 @@ post '/items/:id/return' do
   end
 end
 
+#User profile page (current user and other user).
 get '/users/:id' do
   if params[:id] == current_user.id
     @user = User.find(current_user.id)
@@ -104,6 +115,7 @@ get '/users/:id' do
   end
 end
 
+#Deletes session id, logging out the user.
 get '/logout' do
   session.delete(:user_id)
   redirect '/'

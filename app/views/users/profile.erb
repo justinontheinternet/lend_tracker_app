@@ -5,6 +5,7 @@
 <%= @user.user_name %>
 </h3>
 
+<!-- lists all available items from user -->
 <h3>Available items</h3>
 <% @items.each do |item| %>
 <% unless item.loan %>
@@ -12,6 +13,7 @@
   <% end %>
 <% end %>
 
+<!-- lists all items that are currently on loan -->
 <h3>Currently On Loan</h3>
 <% @items.each do |item| %>
 <% if item.loan %>
@@ -24,6 +26,7 @@
   <% end %>
 <% end %>
 
+<!-- if current user's profile, lists all items they are borrowing -->
 <% if current_user.id == @user.id %>
   <h3>I Am Currently Borrowing:</h3>
     <% current_user.loans.each do |loan| %>
@@ -39,22 +42,26 @@
   <% end %>
 <% end %>
 
+<!-- if current user's profile, will display an 'Add Item' button -->
 <% if current_user.id == @user.id %>
   <p>
     <a href="/items/new">Add an item</a>
   </p>
 <% end %>
 
+<!--if not the current users profile, will display a 'back to profile' button -->
 <% if current_user.id != @user.id %>
   <p>
     <a href="/users/<%=current_user.id%>">Back To My Profile</a>
   </p>
 <% end %>
 
+<!-- other users button -->
 <p>
   <a href="/users">Other Users</a>
 </p>
 
+<!-- logout button -->
 <p>
 <a href="/logout">Logout</a>
 </p>

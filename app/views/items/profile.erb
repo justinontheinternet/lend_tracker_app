@@ -12,13 +12,14 @@
   <%= @item.description %>
 </p>
 
+<!-- can only borrow an item if it is not already lent out, and not your item -->
 <% unless @item.loan || @item.user_id == current_user.id %>
   <form action="/items/<%= @item.id %>/borrow" method="POST">
     <input type="submit" value="Borrow" />
   </form>
 <% end %>
 
-
+<!-- can confirm return of item if it is loaned out and it is yours -->
 <% if @item.loan && @item.user_id == current_user.id %>
   <form action="/items/<%= @item.id %>/return" method="POST">
     <input type="submit" value="Returned" />
