@@ -5,8 +5,18 @@
 <%= @user.user_name %>
 </h3>
 
+<h3>Available items</h3>
 <% @items.each do |item| %>
-<%= item.name %>
+<% unless item.loan %>
+  <a href="/items/<%= item.id %>"><%= item.name %></a>
+  <% end %>
+<% end %>
+
+<h3>Currently On Loan</h3>
+<% @items.each do |item| %>
+<% if item.loan %>
+  <a href="/items/<%= item.id %>"><%= item.name %></a>
+  <% end %>
 <% end %>
 
 <% if current_user.id == @user.id %>

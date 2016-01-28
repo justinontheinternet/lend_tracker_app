@@ -1,0 +1,26 @@
+<h1>
+<%= current_user.user_name %>
+</h1>
+<h3>
+<%= @item.user.user_name %>
+</h3>
+<h3>
+<%= @item.name %>
+</h3>
+
+<p>
+  <% @item.description %>
+</p>
+
+<form action="/items/<%= @item.id %>/borrow" method="POST">
+
+  <input type="submit" value="Borrow" />
+</form>
+
+<p>
+  <a href="/users">Other Users</a>
+</p>
+
+<p>
+<a href="/logout">Logout</a>
+</p>

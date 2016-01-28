@@ -79,7 +79,7 @@ post '/items/:id/borrow' do
   if @loan.save
     redirect "/users/#{user.id}"
   else
-    redirect "/users/#{user.id}"
+    redirect "/users/#{current_user.id}"
   end
 end
 
