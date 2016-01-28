@@ -1,3 +1,10 @@
+<img src="/images/<%= current_user.image %>">
+<!-- upload image button -->
+<form action="/users/upload_image" method="POST" enctype="multipart/form-data">
+  <input type="file" name="file_data">
+  <input type="submit" value="Upload image">
+</form>
+
 <h1>
 <%= current_user.user_name %>
 </h1>

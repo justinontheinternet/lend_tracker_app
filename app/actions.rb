@@ -27,7 +27,11 @@ end
 post '/users' do
   user_name = params[:user_name]
   password = params[:password]
-  @user = User.new(user_name: user_name, password: password)
+  @user = User.new(
+    user_name: user_name,
+    password: password,
+    image: "avatar.png"
+    )
   if @user.save
     session[:user_id] = @user.id
     redirect "/users/#{current_user.id}"
@@ -113,6 +117,19 @@ get '/users/:id' do
     @items = Item.where(user_id: params[:id])
     erb :'users/profile'
   end
+end
+
+#Upload image
+post '/users/upload_image' do
+  @filename = params[:file_data][:filename]
+  file = params[:file_data][:tempfile]
+  File.open("./public/images/#{@filename}", 'wb') do |f|
+    f.write(file.read)
+  end
+  user = current_user
+  user.image = @filename
+  user.save
+  redirect "/users/#{current_user.id}"
 end
 
 #Deletes session id, logging out the user.
