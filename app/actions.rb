@@ -27,7 +27,7 @@ post '/users' do
   @user = User.new(user_name: user_name, password: password)
   if @user.save
     session[:user_id] = @user.id
-    redirect '/items'
+    redirect "/users/#{current_user.id}"
   else
     redirect '/users/signup'
   end
@@ -65,9 +65,15 @@ post '/items' do
 end
 
 get '/users/:id' do
-  @user = User.find(current_user.id)
-  @items = Item.where(user_id: current_user.id)
-  erb :'users/profile'
+  if params[:id] == current_user.id
+    @user = User.find(current_user.id)
+    @items = Item.where(user_id: current_user.id)
+    erb :'users/profile'
+  else
+    @user = User.find(params[:id])
+    @items = Item.where(user_id: params[:id])
+    erb :'users/profile'
+  end
 end
 
 get '/logout' do

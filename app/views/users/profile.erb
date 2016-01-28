@@ -9,9 +9,18 @@
 <%= item.name %>
 <% end %>
 
+<% if current_user.id == @user.id %>
+
 <p>
   <a href="/items/new">Add an item</a>
 </p>
+<% end %>
 <p>
+
+<p>
+  <a href="/users">Other Users</a>
+</p>
+
+
 <a href="/logout">Logout</a>
 </p>
