@@ -86,9 +86,9 @@ end
 post '/items/:id/return' do
   item = Item.find(params[:id])
   if item.loan.destroy
-    redirect '/users/#{current_user.id}'
+    redirect "/users/#{current_user.id}"
   else
-    redirect '/users/#{current_user.id}'
+    redirect "/users/#{current_user.id}"
   end
 end
 
