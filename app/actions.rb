@@ -69,14 +69,18 @@ get '/items/:id' do
   erb :'items/profile'
 end
 
-post '/items/:id/borrow'
+post '/items/:id/borrow' do
   user = Item.find(params[:id]).user
-  @lend = Loan.new(
+  @loan = Loan.new(
     user_id: current_user.id,
     item_id: params[:id],
     checkout: Date.today
     )
-  redirect "/users/#{user.id}"
+  if @loan.save
+    redirect "/users/#{user.id}"
+  else
+    redirect "/users/#{current_user.id}"
+  end
 end
 
 get '/users/:id' do
