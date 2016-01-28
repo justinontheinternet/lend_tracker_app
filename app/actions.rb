@@ -64,6 +64,11 @@ post '/items' do
   end
 end
 
+get 'items/:id' do
+  @item = Item.find(params[:id])
+  erb :'items/profile'
+end
+
 get '/users/:id' do
   if params[:id] == current_user.id
     @user = User.find(current_user.id)
