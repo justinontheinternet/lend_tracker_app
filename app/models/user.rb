@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
   has_many :loans
 
   validates :user_name, presence: true,
-    length: { maximum: 20 }
+    length: { maximum: 20 },
+    uniqueness: true
     
 end

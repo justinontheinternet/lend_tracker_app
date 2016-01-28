@@ -4,6 +4,13 @@
 <h3>
 <%= @item.user.user_name %>'s
 </h3>
+
+<img src="/images/<%= @item.image %>">
+<!-- upload image button -->
+<form action="/items/<%= @item.id %>/upload_image" method="POST" enctype="multipart/form-data">
+  <input type="file" name="file_data">
+  <input type="submit" value="Upload image">
+</form>
 <h3>
 <%= @item.name %>
 </h3>

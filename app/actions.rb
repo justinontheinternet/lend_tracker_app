@@ -65,10 +65,11 @@ post '/items' do
   @item = Item.new(
     name: name,
     description: description,
-    user_id: current_user.id
+    user_id: current_user.id,
+    image: "avatar.png"
     )
   if @item.save
-    redirect "/users/#{current_user.id}"
+    redirect "/items/#{current_user.id}"
   else
     redirect '/items/new'
   end
@@ -119,9 +120,11 @@ get '/users/:id' do
   end
 end
 
-#Upload image
+#Upload profile image
 post '/users/upload_image' do
+  #[:filename] is a default key of the name of the file
   @filename = params[:file_data][:filename]
+  #[:tempfile] is a default key for the temporary path of the file in the browser
   file = params[:file_data][:tempfile]
   File.open("./public/images/#{@filename}", 'wb') do |f|
     f.write(file.read)
@@ -130,6 +133,19 @@ post '/users/upload_image' do
   user.image = @filename
   user.save
   redirect "/users/#{current_user.id}"
+end
+
+#Upload item image
+post '/items/:id/upload_image' do
+  @filename = params[:file_data][:filename]
+  file = params[:file_data][:tempfile]
+  File.open("./public/images/#{@filename}", 'wb') do |f|
+    f.write(file.read)
+  end
+  item = Item.find(params[:id])
+  item.image = @filename
+  item.save
+  redirect "/items/#{item.id}"
 end
 
 #Deletes session id, logging out the user.
