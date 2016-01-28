@@ -20,10 +20,27 @@
 <% end %>
 
 <% if current_user.id == @user.id %>
+  <h3>I Am Currently Borrowing:</h3>
+    <% current_user.loans.each do |loan| %>
+    <p>
+      <%= loan.item.name %>
+      <br />
+      borrowed:
+      <%= loan.checkout %>
+    </p>
+  <% end %>
+<% end %>
 
-<p>
-  <a href="/items/new">Add an item</a>
-</p>
+<% if current_user.id == @user.id %>
+  <p>
+    <a href="/items/new">Add an item</a>
+  </p>
+<% end %>
+
+<% if current_user.id != @user.id %>
+  <p>
+    <a href="/users/<%=current_user.id%>">Back To My Profile</a>
+  </p>
 <% end %>
 
 <p>
