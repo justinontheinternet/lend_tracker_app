@@ -8,8 +8,14 @@
 <%= @item.name %>
 </h3>
 
-<% @item.description %>
-<a href="/items/<%= item.id %>"><%= item.name %></a>
+<p>
+  <% @item.description %>
+</p>
+
+<form action="/items/<%= @item.id %>/borrow" method="POST">
+
+  <input type="submit" value="Borrow" />
+</form>
 
 <p>
   <a href="/users">Other Users</a>

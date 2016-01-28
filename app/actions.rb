@@ -64,7 +64,7 @@ post '/items' do
   end
 end
 
-get 'items/:id' do
+get '/items/:id' do
   @item = Item.find(params[:id])
   erb :'items/profile'
 end
