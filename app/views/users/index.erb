@@ -1,3 +1,5 @@
+<%= partial(:'components/nav', :template_engine => :erb) %>
+
 <% @users.each do |user| %>
 <div>
   <a href="/users/<%= user.id %>"><img src="/images/<%= user.image %>"

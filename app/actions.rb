@@ -73,7 +73,7 @@ post '/items' do
     name: name,
     description: description,
     user_id: current_user.id,
-    image: "avatar.png"
+    image: "itemsilhouette.jpg"
     )
   if @item.save
     redirect "/users/#{current_user.id}"

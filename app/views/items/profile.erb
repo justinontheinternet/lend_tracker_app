@@ -1,6 +1,5 @@
-<h4>
-<%= current_user.user_name %>
-</h4>
+<%= partial(:'components/nav', :template_engine => :erb) %>
+
 <h1>
 <%= @item.user.user_name %>'s <%= @item.name %>
 </h1>
@@ -29,8 +28,7 @@
     <br />
     Details:
     <br>
-    <textarea type="text" name="details">
-    </textarea>
+    <textarea type="text" name="details"></textarea>
     <br>
     <input type="submit" value="Borrow" />
   </form>
@@ -44,7 +42,7 @@
 <% end %>
 
 
-<p>
+<!-- <p>
   <a href="/users/<%=current_user.id%>">Back To My Profile</a>
 </p>
 
@@ -54,4 +52,4 @@
 
 <p>
 <a href="/logout">Logout</a>
-</p>
+</p> -->

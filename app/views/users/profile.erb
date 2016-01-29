@@ -1,6 +1,5 @@
-<h4>
-<%= current_user.user_name %>
-</h4>
+<%= partial(:'components/nav', :template_engine => :erb) %>
+
 <img src="/images/<%= @user.image %>">
 
 <% if @user.id == current_user.id %>
@@ -21,6 +20,13 @@
 <% unless item.loan %>
   <a href="/items/<%= item.id %>"><%= item.name %></a>
   <% end %>
+<% end %>
+
+<!-- if current user's profile, will display an 'Add Item' button -->
+<% if current_user.id == @user.id %>
+  <p>
+    <a href="/items/new">Add an item</a>
+  </p>
 <% end %>
 
 <!-- lists all items that are currently on loan -->
@@ -52,13 +58,6 @@
   <% end %>
 <% end %>
 
-<!-- if current user's profile, will display an 'Add Item' button -->
-<% if current_user.id == @user.id %>
-  <p>
-    <a href="/items/new">Add an item</a>
-  </p>
-<% end %>
-
 <!--if not the current users profile, will display a 'back to profile' button -->
 <% if current_user.id != @user.id %>
   <p>
@@ -66,19 +65,19 @@
   </p>
 <% end %>
 
-<!-- other users button -->
+<!-- other users button 
 <p>
   <a href="/users">Other Users</a>
-</p>
+</p>-->
 
-<!-- logout button -->
+<!-- logout button 
 <p>
-<a href="/logout">Logout</a>
-</p>
+  <a href="/logout">Logout</a>
+</p>-->
 
-<!-- delete profile button -->
+<!-- delete profile button 
 <% if current_user.id == @user.id %>
   <p>
     <a href="/users/delete">Delete profile</a>
   </p>
-<% end %>
+<% end %> -->
