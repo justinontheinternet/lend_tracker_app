@@ -95,7 +95,9 @@ post '/items/:id/borrow' do
   @loan = Loan.new(
     user_id: current_user.id,
     item_id: params[:id],
-    checkout: Date.today
+    checkout: params[:borrow_date] || Date.today,
+    checkin: params[:return_date],
+    details: params[:details]
     )
   if @loan.save
     redirect "/users/#{user.id}"
