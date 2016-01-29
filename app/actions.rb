@@ -69,7 +69,7 @@ post '/items' do
     image: "avatar.png"
     )
   if @item.save
-    redirect "/items/#{current_user.id}"
+    redirect "/users/#{current_user.id}"
   else
     redirect '/items/new'
   end

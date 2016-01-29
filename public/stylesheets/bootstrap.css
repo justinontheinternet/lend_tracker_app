@@ -14,22 +14,28 @@ body {
   margin: 0;
 }
 
+#main_wrapper {
+  margin: 0 auto;
+  background-image: url(../images/shittrackerbackground.png);
+  background-repeat: no-repeat;
+  width: 800px;
+  height: 800px;
+  padding-top: 415px;
+}
+
 .form_main {
-  background-color: #E6DF44;
   width: 300px;
   height: 300px;
   margin: 20px auto;
   text-align: center;
   border-radius: 10px;
   padding-top: 10px;
-  -webkit-box-shadow: 10px 10px 26px -9px rgba(0,0,0,0.75);
-  -moz-box-shadow: 10px 10px 26px -9px rgba(0,0,0,0.75);
-  box-shadow: 10px 10px 26px -9px rgba(0,0,0,0.75);
+  color: #E6DF44;
 }
 
 .form_main h1 {
   font-family: 'Anton', sans-serif;
-  color: #063852;
+  color: #E6DF44;
 }
 
 .form_main a:link {
@@ -167,8 +173,8 @@ input[type="submit"] {
   -webkit-appearance: button;
   cursor: pointer;
   margin: 10px 0;
-  background-color: #063852;
-  color: #fff;
+  background-color: #E6DF44;
+  color: #063852;
   border-radius: 20px
 }
 button[disabled],
@@ -1127,6 +1133,12 @@ body {
   line-height: 1.42857143;
   color: #333;
   background-color: #fff;
+}
+
+textarea {
+  width: 200px;
+  max-width: 200px;
+  height: 100px;
 }
 input,
 button,

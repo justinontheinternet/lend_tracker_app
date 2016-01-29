@@ -22,6 +22,16 @@
 <!-- can only borrow an item if it is not already lent out, and not your item -->
 <% unless @item.loan || @item.user_id == current_user.id %>
   <form action="/items/<%= @item.id %>/borrow" method="POST">
+    Pickup date:
+    <input type="date" name="borrow_date">
+    Return date:
+    <input type="date" name="return_date">
+    <br />
+    Details:
+    <br>
+    <textarea type="text" name="details">
+    </textarea>
+    <br>
     <input type="submit" value="Borrow" />
   </form>
 <% end %>
