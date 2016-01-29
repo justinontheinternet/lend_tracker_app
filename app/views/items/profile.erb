@@ -1,19 +1,19 @@
-<h1>
+<h4>
 <%= current_user.user_name %>
+</h4>
+<h1>
+<%= @item.user.user_name %>'s <%= @item.name %>
 </h1>
-<h3>
-<%= @item.user.user_name %>'s
-</h3>
 
 <img src="/images/<%= @item.image %>">
+
+<% if @item.user_id == current_user.id %>
 <!-- upload image button -->
 <form action="/items/<%= @item.id %>/upload_image" method="POST" enctype="multipart/form-data">
   <input type="file" name="file_data">
   <input type="submit" value="Upload image">
 </form>
-<h3>
-<%= @item.name %>
-</h3>
+<% end %>
 
 <p>
   <%= @item.description %>

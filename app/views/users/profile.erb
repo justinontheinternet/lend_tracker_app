@@ -1,16 +1,19 @@
-<img src="/images/<%= current_user.image %>">
+<h4>
+<%= current_user.user_name %>
+</h4>
+<img src="/images/<%= @user.image %>">
+
+<% if @user.id == current_user.id %>
 <!-- upload image button -->
 <form action="/users/upload_image" method="POST" enctype="multipart/form-data">
   <input type="file" name="file_data">
   <input type="submit" value="Upload image">
 </form>
+<% end %>
 
 <h1>
-<%= current_user.user_name %>
-</h1>
-<h3>
 <%= @user.user_name %>
-</h3>
+</h1>
 
 <!-- lists all available items from user -->
 <h3>Available items</h3>
@@ -72,3 +75,10 @@
 <p>
 <a href="/logout">Logout</a>
 </p>
+
+<!-- delete profile button -->
+<% if current_user.id == @user.id %>
+  <p>
+    <a href="/users/delete">Delete profile</a>
+  </p>
+<% end %>

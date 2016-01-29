@@ -40,6 +40,13 @@ post '/users' do
   end
 end
 
+#Deletes a user's profile
+get '/users/delete' do
+  @user = current_user
+  @user.destroy
+  redirect '/'
+end
+
 #Validates that user exists when logging in
 post '/validation' do
   user_name = params[:user_name]
@@ -49,7 +56,7 @@ post '/validation' do
     session[:user_id] = @user.id
     redirect "/users/#{current_user.id}"
   else
-    redirect '/users/signup'
+    redirect '/'
   end
 end
 
@@ -69,7 +76,7 @@ post '/items' do
     image: "avatar.png"
     )
   if @item.save
-    redirect "/items/#{current_user.id}"
+    redirect "/users/#{current_user.id}"
   else
     redirect '/items/new'
   end
