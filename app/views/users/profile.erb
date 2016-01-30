@@ -1,83 +1,89 @@
 <%= partial(:'components/nav', :template_engine => :erb) %>
 
-<img src="/images/<%= @user.image %>">
+<div id="profile_main">
+  <img src="/images/<%= @user.image %>">
 
-<% if @user.id == current_user.id %>
-<!-- upload image button -->
-<form action="/users/upload_image" method="POST" enctype="multipart/form-data">
-  <input type="file" name="file_data">
-  <input type="submit" value="Upload image">
-</form>
-<% end %>
-
-<h1>
-<%= @user.user_name %>
-</h1>
-
-<!-- lists all available items from user -->
-<h3>Available items</h3>
-<% @items.each do |item| %>
-<% unless item.loan %>
-  <a href="/items/<%= item.id %>"><%= item.name %></a>
+  <% if @user.id == current_user.id %>
+  <!-- upload image button -->
+  <form action="/users/upload_image" method="POST" enctype="multipart/form-data">
+    <input type="file" name="file_data">
+    <input type="submit" value="Upload image">
+  </form>
   <% end %>
-<% end %>
 
-<!-- if current user's profile, will display an 'Add Item' button -->
-<% if current_user.id == @user.id %>
-  <p>
-    <a href="/items/new">Add an item</a>
-  </p>
-<% end %>
+  <h1>
+  <%= @user.user_name %>
+  </h1>
 
-<!-- lists all items that are currently on loan -->
-<h3>Currently On Loan</h3>
-<% @items.each do |item| %>
-<% if item.loan %>
-  <a href="/items/<%= item.id %>"><%= item.name %></a>
-    <br />
-    To: <%= item.loan.user.user_name %>
-    <br />
-    Lent On:
-    <%= item.loan.checkout %>
+  <!-- lists all available items from user -->
+  <h3>Available items:</h3>
+  <ul>
+  <% @items.each do |item| %>
+    <li>
+      <% unless item.loan %>
+        <a href="/items/<%= item.id %>"><%= item.name %></a>
+      <% end %>
+    </li>
   <% end %>
-<% end %>
+  </ul>
 
-<!-- if current user's profile, lists all items they are borrowing -->
-<% if current_user.id == @user.id %>
-  <h3>I Am Currently Borrowing:</h3>
-    <% current_user.loans.each do |loan| %>
+  <!-- if current user's profile, will display an 'Add Item' button -->
+  <% if current_user.id == @user.id %>
     <p>
-      <%= loan.item.name %>
-      <br />
-      Borrowed:
-      <%= loan.checkout %>
-      <br />
-      From:
-      <%= loan.item.user.user_name %>
+      <a href="/items/new">Add an item</a>
     </p>
   <% end %>
-<% end %>
 
-<!--if not the current users profile, will display a 'back to profile' button -->
-<% if current_user.id != @user.id %>
+  <!-- lists all items that are currently on loan -->
+  <h3>Currently On Loan:</h3>
+  <% @items.each do |item| %>
+  <% if item.loan %>
+    <a href="/items/<%= item.id %>"><%= item.name %></a>
+      <br />
+      To: <%= item.loan.user.user_name %>
+      <br />
+      Lent On:
+      <%= item.loan.checkout %>
+    <% end %>
+  <% end %>
+
+  <!-- if current user's profile, lists all items they are borrowing -->
+  <% if current_user.id == @user.id %>
+    <h3>I Am Currently Borrowing:</h3>
+      <% current_user.loans.each do |loan| %>
+      <p>
+        <%= loan.item.name %>
+        <br />
+        Borrowed:
+        <%= loan.checkout %>
+        <br />
+        From:
+        <%= loan.item.user.user_name %>
+      </p>
+    <% end %>
+  <% end %>
+
+  <!--if not the current users profile, will display a 'back to profile' button -->
+  <% if current_user.id != @user.id %>
+    <p>
+      <a href="/users/<%=current_user.id%>">Back To My Profile</a>
+    </p>
+  <% end %>
+
+  <!-- other users button 
   <p>
-    <a href="/users/<%=current_user.id%>">Back To My Profile</a>
-  </p>
-<% end %>
+    <a href="/users">Other Users</a>
+  </p>-->
 
-<!-- other users button 
-<p>
-  <a href="/users">Other Users</a>
-</p>-->
-
-<!-- logout button 
-<p>
-  <a href="/logout">Logout</a>
-</p>-->
-
-<!-- delete profile button 
-<% if current_user.id == @user.id %>
+  <!-- logout button 
   <p>
-    <a href="/users/delete">Delete profile</a>
-  </p>
-<% end %> -->
+    <a href="/logout">Logout</a>
+  </p>-->
+
+  <!-- delete profile button 
+  <% if current_user.id == @user.id %>
+    <p>
+      <a href="/users/delete">Delete profile</a>
+    </p>
+  <% end %> -->
+</div>

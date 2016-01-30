@@ -14,6 +14,8 @@ body {
   margin: 0;
 }
 
+/* The following is for the splash (login and signup) page */
+
 #main_wrapper {
   margin: 0 auto;
   background-image: url(../images/shittrackerbackground.png);
@@ -52,6 +54,15 @@ body {
   color: #000;
   text-decoration: none;
 }
+
+/* The following is for the User and Item proile pages */
+
+#profile_main {
+  margin: 0 auto;
+  padding: 0 10px;
+}
+
+/* #all _users is referring to the All Users (users/index) page */
 
 #all_users {
   display: block;
