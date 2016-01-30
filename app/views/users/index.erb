@@ -1,14 +1,14 @@
 <%= partial(:'components/nav', :template_engine => :erb) %>
 
-<% @users.each do |user| %>
-<div>
-  <a href="/users/<%= user.id %>"><img src="/images/<%= user.image %>"
-  <br>
-  <%= user.user_name %></a>
+<div id="all_users">
+  <% @users.each do |user| %>
+  <div class="user">
+    <div class="user_image_holder">
+    <a href="/users/<%= user.id %>"><img src="/images/<%= user.image %>">
+    </div>
+    <div class="name">
+    <%= user.user_name %></a>
+    </div>
+  </div>
+  <% end %>
 </div>
-<% end %>
-
-
-<p>
-  <a href="/users/<%=current_user.id%>">Back To My Profile</a>
-</p>

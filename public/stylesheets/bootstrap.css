@@ -53,6 +53,57 @@ body {
   text-decoration: none;
 }
 
+#all_users {
+  display: block;
+}
+
+#all_users .user {
+  float: left;
+  /*border: 1px solid gray;*/
+  margin: 10px;
+  padding: 6px;
+}
+
+#all_users .user img {
+  vertical-align: middle;
+  width: auto;
+  max-width: 200px;
+  height: auto;
+  max-height: 200px;
+}
+
+#all_users .user_image_holder {
+  min-height: 200px;
+  margin-bottom: 15px;
+  border-radius: 50px;
+  -webkit-box-shadow: 5px 5px 40px 5px #0D0D0D;
+  box-shadow: 5px 5px 20px 5px #0D0D0D;
+  overflow: hidden;
+}
+
+#all_users .user div.name {
+  text-align: center;
+}
+
+#all_users .user:nth-child(even) :hover {
+  opacity: .6;
+  transition: all 2s ease;
+  -moz-transition: all 2s ease;
+  -webkit-transition: all 2s ease;
+  -o-transition: all 2s ease;
+  -ms-transition: all 2s ease;
+  -khtml-transition: all 2s ease;
+}
+
+#all_users .user:nth-child(odd) :hover {
+  opacity: .6;
+  transition: all 2s ease;
+  -moz-transition: all 2s ease;
+  -webkit-transition: all 2s ease;
+  -o-transition: all 2s ease;
+  -ms-transition: all 2s ease;
+  -khtml-transition: all 2s ease;
+}
 
 article,
 aside,
@@ -175,7 +226,7 @@ input[type="submit"] {
   margin: 10px 0;
   background-color: #E6DF44;
   color: #063852;
-  border-radius: 20px
+  border-radius: 5px
 }
 button[disabled],
 html input[disabled] {
@@ -1149,13 +1200,13 @@ textarea {
   line-height: inherit;
 }
 a {
-  color: #337ab7;
+  color: #0b6999;
   text-decoration: none;
 }
 a:hover,
 a:focus {
-  color: #23527c;
-  text-decoration: underline;
+  color: #E6DF44;
+  text-decoration: none;
 }
 a:focus {
   outline: thin dotted;
@@ -4553,8 +4604,8 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   }
 }
 .navbar-default {
-  background-color: #f8f8f8;
-  border-color: #e7e7e7;
+  background-color: #063852;
+  border-color: #E6DF44;
 }
 .navbar-default .navbar-brand {
   color: #777;
@@ -4565,14 +4616,14 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   background-color: transparent;
 }
 .navbar-default .navbar-text {
-  color: #777;
+  color: #E6DF44;
 }
 .navbar-default .navbar-nav > li > a {
-  color: #777;
+  color: #0b6999;
 }
 .navbar-default .navbar-nav > li > a:hover,
 .navbar-default .navbar-nav > li > a:focus {
-  color: #333;
+  color: #E6DF44;
   background-color: transparent;
 }
 .navbar-default .navbar-nav > .active > a,
@@ -4588,7 +4639,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   background-color: transparent;
 }
 .navbar-default .navbar-toggle {
-  border-color: #ddd;
+  border-color: #E6DF44;
 }
 .navbar-default .navbar-toggle:hover,
 .navbar-default .navbar-toggle:focus {
@@ -4684,7 +4735,7 @@ fieldset[disabled] .navbar-default .btn-link:focus {
   background-color: transparent;
 }
 .navbar-inverse .navbar-toggle {
-  border-color: #333;
+  border-color: #E6DF44;
 }
 .navbar-inverse .navbar-toggle:hover,
 .navbar-inverse .navbar-toggle:focus {
