@@ -2,7 +2,7 @@
 
 <div id="all_users">
   <% @users.each do |user| %>
-    <% unless user.id == current_user.id %>
+    <% unless current_user && user.id == current_user.id %>
       <div class="user">
         <div class="user_image_holder">
         <a href="/users/<%= user.id %>"><img src="/images/<%= user.image %>">

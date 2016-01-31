@@ -8,7 +8,11 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <strong><a class="navbar-brand" href="/users/<%=current_user.id%>" style="color: #E6DF44"><%= current_user.user_name %></a></strong>
+      <% if current_user %>
+        <strong><a class="navbar-brand" href="/users/<%=current_user.id%>" style="color: #E6DF44"><%= current_user.user_name %></a></strong>
+      <% else %>
+        <strong><a class="navbar-brand" href="/" style="color: #E6DF44">Login</a></strong>
+      <% end %>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -19,19 +23,21 @@
             All Users
           </a>
         </li>
-        <li>
-          <a href="/logout">
-            Logout
-          </a>
-        </li>
-        <li>
-            <!-- delete profile button -->
-            <% if current_user.id == @user.id %>
-              <a href="/users/delete">
-                Delete profile
-              </a>
-            <% end %>
-        </li>
+        <% if current_user %>
+          <li>
+            <a href="/logout">
+              Logout
+            </a>
+          </li>
+          <li>
+              <!-- delete profile button -->
+              <% if current_user.id == @user.id %>
+                <a href="/users/delete">
+                  Delete profile
+                </a>
+              <% end %>
+          </li>
+        <% end %>
       </ul>
     </div>
   </div>

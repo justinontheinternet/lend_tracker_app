@@ -6,7 +6,7 @@
 
   <img src="/images/<%= @item.image %>">
 
-  <% if @item.user_id == current_user.id %>
+  <% if current_user && @item.user_id == current_user.id %>
   <!-- upload image button -->
   <form action="/items/<%= @item.id %>/upload_image" method="POST" enctype="multipart/form-data">
     <input type="file" name="file_data">
@@ -18,29 +18,31 @@
     <%= @item.description %>
   </p>
 
-  <!-- can only borrow an item if it is not already lent out, and not your item -->
-  <% unless @item.loan || @item.user_id == current_user.id %>
-    <form action="/items/<%= @item.id %>/borrow" method="POST">
-      Pickup date:
-      <input type="date" name="borrow_date">
-      Return date:
-      <input type="date" name="return_date">
-      <br />
-      Details:
-      <br>
-      <textarea type="text" name="details"></textarea>
-      <br>
-      <input type="submit" value="Borrow" />
-    </form>
-    <% if @loan && @loan.errors.any? %>
-      <div>
-        <strong>Uh oh:</strong>
-        <ul>
-          <% @loan.errors.full_messages.each do |message| %>
-            <li><%= message %></li>
-          <% end %>
-        </ul>
-      </div>
+  <% if current_user %>
+    <!-- can only borrow an item if it is not already lent out, and not your item -->
+    <% unless @item.loan || @item.user_id == current_user.id %>
+      <form action="/items/<%= @item.id %>/borrow" method="POST">
+        Pickup date:
+        <input type="date" name="borrow_date">
+        Return date:
+        <input type="date" name="return_date">
+        <br />
+        Details:
+        <br>
+        <textarea type="text" name="details"></textarea>
+        <br>
+        <input type="submit" value="Borrow" />
+      </form>
+      <% if @loan && @loan.errors.any? %>
+        <div>
+          <strong>Uh oh:</strong>
+          <ul>
+            <% @loan.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
     <% end %>
   <% end %>
 
@@ -51,17 +53,5 @@
     </form>
   <% end %>
 
-
-  <!-- <p>
-    <a href="/users/<%=current_user.id%>">Back To My Profile</a>
-  </p>
-
-  <p>
-    <a href="/users">Other Users</a>
-  </p>
-
-  <p>
-  <a href="/logout">Logout</a>
-  </p> -->
 </div>
 
