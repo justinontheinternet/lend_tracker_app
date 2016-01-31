@@ -46,6 +46,7 @@ end
 get '/users/delete' do
   @user = current_user
   @user.destroy
+  session.delete(:user_id)
   redirect '/'
 end
 
