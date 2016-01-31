@@ -34,7 +34,7 @@
     </form>
     <% if @loan && @loan.errors.any? %>
       <div>
-        <strong>You haven't provided enough info:</strong>
+        <strong>Uh oh:</strong>
         <ul>
           <% @loan.errors.full_messages.each do |message| %>
             <li><%= message %></li>

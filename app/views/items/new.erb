@@ -17,7 +17,7 @@
 
   <% if @item && @item.errors.any? %>
     <div>
-      <strong>You haven't provided enough info:</strong>
+      <strong>Oops:</strong>
       <ul>
         <% @item.errors.full_messages.each do |message| %>
           <li><%= message %></li>
