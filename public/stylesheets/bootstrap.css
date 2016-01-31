@@ -62,6 +62,10 @@ body {
   padding: 0 10px;
 }
 
+#profile_main img {
+  border-radius: 10px;
+}
+
 /* #all _users is referring to the All Users (users/index) page */
 
 #all_users {
