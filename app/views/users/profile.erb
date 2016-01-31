@@ -19,11 +19,9 @@
   <h3>Available items:</h3>
   <ul>
   <% @items.each do |item| %>
-    <li>
-      <% unless item.loan %>
-        <a href="/items/<%= item.id %>"><%= item.name %></a>
-      <% end %>
-    </li>
+    <% unless item.loan %>
+      <a href="/items/<%= item.id %>"><img src="/images/<%= item.image %>"><%= item.name %></a>
+    <% end %>
   <% end %>
   </ul>
 
