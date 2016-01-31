@@ -11,7 +11,6 @@ class Loan < ActiveRecord::Base
 
   def valid_checkout?
     if checkout && checkout < Date.today
-      binding.pry
       errors.add(:pickup, "can't be earlier than today")
     end
   end
