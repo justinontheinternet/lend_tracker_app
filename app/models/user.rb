@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
 
   has_many :items, dependent: :destroy
-  has_many :loans
+  has_many :loans, dependent: :destroy
 
   validates :user_name, presence: true,
     length: { maximum: 20 },

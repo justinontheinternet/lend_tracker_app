@@ -18,10 +18,11 @@ get '/users/signup' do
   erb :'users/signup'
 end
 
-get '/items' do
-  @items = Item.all
-  erb :'items/index'
-end
+# Lists all items (do not need)
+# get '/items' do
+#   @items = Item.all
+#   erb :'items/index'
+# end
 
 #After sign up, creats a new user.
 post '/users' do
@@ -73,7 +74,7 @@ post '/items' do
     name: name,
     description: description,
     user_id: current_user.id,
-    image: "avatar.png"
+    image: "itemsilhouette.jpg"
     )
   if @item.save
     redirect "/users/#{current_user.id}"

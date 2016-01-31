@@ -1,61 +1,57 @@
-<h4>
-<%= current_user.user_name %>
-</h4>
-<h1>
-<%= @item.user.user_name %>'s <%= @item.name %>
-</h1>
+<%= partial(:'components/nav', :template_engine => :erb) %>
+<div id="profile_main">
+  <h1>
+  <%= @item.user.user_name %>'s <%= @item.name %>
+  </h1>
 
-<img src="/images/<%= @item.image %>">
+  <img src="/images/<%= @item.image %>">
 
-<% if @item.user_id == current_user.id %>
-<!-- upload image button -->
-<form action="/items/<%= @item.id %>/upload_image" method="POST" enctype="multipart/form-data">
-  <input type="file" name="file_data">
-  <input type="submit" value="Upload image">
-</form>
-<% end %>
-
-<p>
-  Description: <%= @item.description %>
-</p>
-
-<!-- can only borrow an item if it is not already lent out, and not your item -->
-<% unless @item.loan || @item.user_id == current_user.id %>
-  <form action="/items/<%= @item.id %>/borrow" method="POST">
-    Pickup date:
-    <input type="date" name="borrow_date">
-    Return date:
-    <input type="date" name="return_date">
-    <br />
-    Details:
-    <br>
-    <textarea type="text" name="details"></textarea>
-    <br>
-    <input type="submit" value="Borrow" />
+  <% if @item.user_id == current_user.id %>
+  <!-- upload image button -->
+  <form action="/items/<%= @item.id %>/upload_image" method="POST" enctype="multipart/form-data">
+    <input type="file" name="file_data">
+    <input type="submit" value="Upload image">
   </form>
-<% end %>
+  <% end %>
 
-<!-- can confirm return of item if it is loaned out and it is yours -->
-<% if @item.loan && @item.user_id == current_user.id %>
   <p>
-  Booked by: <%= @item.loan.user.user_name %> <br>
-  From: <%= @item.loan.checkout %>&nbsp; &nbsp;To: <%= @item.loan.checkin %> <br>
-  Details: <%= @item.loan.details %>
+    <%= @item.description %>
   </p>
-  <form action="/items/<%= @item.id %>/return" method="POST">
-    <input type="submit" value="Returned" />
-  </form>
-<% end %>
+
+  <!-- can only borrow an item if it is not already lent out, and not your item -->
+  <% unless @item.loan || @item.user_id == current_user.id %>
+    <form action="/items/<%= @item.id %>/borrow" method="POST">
+      Pickup date:
+      <input type="date" name="borrow_date">
+      Return date:
+      <input type="date" name="return_date">
+      <br />
+      Details:
+      <br>
+      <textarea type="text" name="details"></textarea>
+      <br>
+      <input type="submit" value="Borrow" />
+    </form>
+  <% end %>
+
+  <!-- can confirm return of item if it is loaned out and it is yours -->
+  <% if @item.loan && @item.user_id == current_user.id %>
+    <form action="/items/<%= @item.id %>/return" method="POST">
+      <input type="submit" value="Returned" />
+    </form>
+  <% end %>
 
 
-<p>
-  <a href="/users/<%=current_user.id%>">Back To My Profile</a>
-</p>
+  <!-- <p>
+    <a href="/users/<%=current_user.id%>">Back To My Profile</a>
+  </p>
 
-<p>
-  <a href="/users">Other Users</a>
-</p>
+  <p>
+    <a href="/users">Other Users</a>
+  </p>
 
-<p>
-<a href="/logout">Logout</a>
-</p>
+  <p>
+  <a href="/logout">Logout</a>
+  </p> -->
+</div>
+
