@@ -125,7 +125,7 @@ end
 
 #User profile page (current user and other user).
 get '/users/:id' do
-  if params[:id] == current_user.id
+  if current_user && params[:id] == current_user.id
     @user = User.find(current_user.id)
     @items = Item.where(user_id: current_user.id)
     erb :'users/profile'

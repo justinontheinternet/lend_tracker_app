@@ -3,7 +3,7 @@
 <div id="profile_main">
   <img src="/images/<%= @user.image %>">
 
-  <% if @user.id == current_user.id %>
+  <% if current_user && @user.id == current_user.id %>
   <!-- upload image button -->
   <form action="/users/upload_image" method="POST" enctype="multipart/form-data">
     <input type="file" name="file_data">
@@ -26,7 +26,7 @@
   </ul>
 
   <!-- if current user's profile, will display an 'Add Item' button -->
-  <% if current_user.id == @user.id %>
+  <% if current_user && current_user.id == @user.id %>
     <p>
       <a href="/items/new">Add an item</a>
     </p>
@@ -48,7 +48,7 @@
   <% end %>
 
   <!-- if current user's profile, lists all items they are borrowing -->
-  <% if current_user.id == @user.id %>
+  <% if current_user && current_user.id == @user.id %>
     <h3>I Am Currently Borrowing:</h3>
     <% current_user.loans.each do |loan| %>
       <p>
@@ -64,7 +64,7 @@
   <% end %>
 
   <!--if not the current users profile, will display a 'back to profile' button -->
-  <!-- <% if current_user.id != @user.id %>
+  <!-- <% if current_user && current_user.id != @user.id %>
     <p>
       <a href="/users/<%=current_user.id%>">Back To My Profile</a>
     </p>
@@ -81,7 +81,7 @@
   </p>-->
 
   <!-- delete profile button 
-  <% if current_user.id == @user.id %>
+  <% if current_user && current_user.id == @user.id %>
     <p>
       <a href="/users/delete">Delete profile</a>
     </p>
