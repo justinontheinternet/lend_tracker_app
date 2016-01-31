@@ -145,15 +145,15 @@ body {
 #user_items .item img {
   vertical-align: middle;
   width: auto;
-  max-width: 50px;
+  max-width: 75px;
   height: auto;
-  max-height: 50px;
+  max-height: 75px;
 }
 
 #user_items .item_image_holder {
-  min-height: 50px;
+  min-height: 75px;
   margin-bottom: 15px;
-  border-radius: 50px;
+  border-radius: 75px;
   -webkit-box-shadow: 5px 5px 40px 5px #0D0D0D;
   box-shadow: 5px 5px 20px 5px #0D0D0D;
   overflow: hidden;
@@ -161,6 +161,7 @@ body {
 
 #user_items .item div.name {
   text-align: center;
+  max-width: 75px;
 }
 
 #user_items .item:nth-child(even) :hover {
