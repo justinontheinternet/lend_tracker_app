@@ -64,6 +64,7 @@ end
 
 #Item add page
 get '/items/new' do
+  @user = User.new
   erb :'items/new'
 end
 
