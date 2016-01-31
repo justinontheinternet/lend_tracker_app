@@ -120,6 +120,71 @@ body {
   -khtml-transition: all 2s ease;
 }
 
+.full_width_container {
+  width: 100%;
+  display: block;
+  clear: both;
+}
+
+.add_item_position {
+  width: 400px;
+}
+
+#user_items {
+  display: block;
+  clear: right;
+}
+
+#user_items .item {
+  float: left;
+  /*border: 1px solid gray;*/
+  margin-bottom: 10px;
+  padding: 6px;
+}
+
+#user_items .item img {
+  vertical-align: middle;
+  width: auto;
+  max-width: 50px;
+  height: auto;
+  max-height: 50px;
+}
+
+#user_items .item_image_holder {
+  min-height: 50px;
+  margin-bottom: 15px;
+  border-radius: 50px;
+  -webkit-box-shadow: 5px 5px 40px 5px #0D0D0D;
+  box-shadow: 5px 5px 20px 5px #0D0D0D;
+  overflow: hidden;
+}
+
+#user_items .item div.name {
+  text-align: center;
+}
+
+#user_items .item:nth-child(even) :hover {
+  opacity: .6;
+  transition: all 2s ease;
+  -moz-transition: all 2s ease;
+  -webkit-transition: all 2s ease;
+  -o-transition: all 2s ease;
+  -ms-transition: all 2s ease;
+  -khtml-transition: all 2s ease;
+}
+
+#user_items .item:nth-child(odd) :hover {
+  opacity: .6;
+  transition: all 2s ease;
+  -moz-transition: all 2s ease;
+  -webkit-transition: all 2s ease;
+  -o-transition: all 2s ease;
+  -ms-transition: all 2s ease;
+  -khtml-transition: all 2s ease;
+}
+
+
+
 article,
 aside,
 details,
