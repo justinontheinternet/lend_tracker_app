@@ -9,6 +9,7 @@ end
 
 #lists all users
 get '/users' do
+  @user = User.new
   @users = User.all
   erb :'users/index'
 end
@@ -68,6 +69,7 @@ end
 
 #Creates a new item. Auto-assigned to user who creates it (via model)
 post '/items' do
+  @user = User.new
   name = params[:name]
   description = params[:description]
   @item = Item.new(
@@ -79,12 +81,13 @@ post '/items' do
   if @item.save
     redirect "/users/#{current_user.id}"
   else
-    redirect '/items/new'
+    erb :'/items/new'
   end
 end
 
 #Item profile/status page
 get '/items/:id' do
+  @user = User.new
   @item = Item.find(params[:id])
   erb :'items/profile'
 end
@@ -92,6 +95,8 @@ end
 #Creates a loan when a user borrows an item.
 #Ties the loan to that user.
 post '/items/:id/borrow' do
+  @user = User.new
+  @item = Item.find(params[:id])
   user = Item.find(params[:id]).user
   @loan = Loan.new(
     user_id: current_user.id,
@@ -103,7 +108,7 @@ post '/items/:id/borrow' do
   if @loan.save
     redirect "/users/#{user.id}"
   else
-    redirect "/users/#{current_user.id}"
+    erb :'/items/profile'
   end
 end
 

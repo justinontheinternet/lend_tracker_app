@@ -32,6 +32,16 @@
       <br>
       <input type="submit" value="Borrow" />
     </form>
+    <% if @loan && @loan.errors.any? %>
+      <div>
+        <strong>You haven't provided enough info:</strong>
+        <ul>
+          <% @loan.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
   <% end %>
 
   <!-- can confirm return of item if it is loaned out and it is yours -->

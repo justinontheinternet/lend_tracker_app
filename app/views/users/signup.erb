@@ -11,6 +11,17 @@
       <input type="submit" value="Submit" />
     </form>
 
+    <% if @user && @user.errors.any? %>
+      <div>
+        <strong>You haven't provided enough info:</strong>
+        <ul>
+          <% @user.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
     <p>
       <a href="/">Back To Login</a>
     </p>
