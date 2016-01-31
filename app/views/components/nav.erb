@@ -26,9 +26,11 @@
         </li>
         <li>
             <!-- delete profile button -->
-            <a href="/users/delete">
-              Delete profile
-            </a>
+            <% if current_user.id == @user.id %>
+              <a href="/users/delete">
+                Delete profile
+              </a>
+            <% end %>
         </li>
       </ul>
     </div>

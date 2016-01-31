@@ -19,11 +19,9 @@
   <h3>Available items:</h3>
   <ul>
   <% @items.each do |item| %>
-    <li>
-      <% unless item.loan %>
-        <a href="/items/<%= item.id %>"><%= item.name %></a>
-      <% end %>
-    </li>
+    <% unless item.loan %>
+      <a href="/items/<%= item.id %>"><img src="/images/<%= item.image %>"><%= item.name %></a>
+    <% end %>
   <% end %>
   </ul>
 
@@ -37,38 +35,40 @@
   <!-- lists all items that are currently on loan -->
   <h3>Currently On Loan:</h3>
   <% @items.each do |item| %>
-  <% if item.loan %>
-    <a href="/items/<%= item.id %>"><%= item.name %></a>
-      <br />
-      To: <%= item.loan.user.user_name %>
-      <br />
-      Lent On:
-      <%= item.loan.checkout %>
+    <% if item.loan %>
+      <p>
+        <a href="/items/<%= item.id %>"><%= item.name %></a>
+        <br />
+        Lent On:
+        <%= item.loan.checkout %>
+        <br />
+        To: <a href="/users/<%= item.loan.user_id %>"><%= item.loan.user.user_name %></a>
+      </p>
     <% end %>
   <% end %>
 
   <!-- if current user's profile, lists all items they are borrowing -->
   <% if current_user.id == @user.id %>
     <h3>I Am Currently Borrowing:</h3>
-      <% current_user.loans.each do |loan| %>
+    <% current_user.loans.each do |loan| %>
       <p>
-        <%= loan.item.name %>
+        <a href="/items/<%= loan.item.id %>"><%= loan.item.name %></a>
         <br />
         Borrowed:
         <%= loan.checkout %>
         <br />
         From:
-        <%= loan.item.user.user_name %>
+        <a href="/users/<%= loan.item.user_id %>"><%= loan.item.user.user_name %></a>
       </p>
     <% end %>
   <% end %>
 
   <!--if not the current users profile, will display a 'back to profile' button -->
-  <% if current_user.id != @user.id %>
+  <!-- <% if current_user.id != @user.id %>
     <p>
       <a href="/users/<%=current_user.id%>">Back To My Profile</a>
     </p>
-  <% end %>
+  <% end %> -->
 
   <!-- other users button 
   <p>

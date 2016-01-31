@@ -88,6 +88,3 @@ DEPENDENCIES
   sinatra-partial
   sqlite3
   tux
-
-BUNDLED WITH
-   1.11.2
