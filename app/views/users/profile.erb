@@ -52,10 +52,8 @@
           <br />
           Lent On:
           <%= item.loan.checkout %>
-          <% if current_user == @user.id %>
             <br />
             To: <a href="/users/<%= item.loan.user_id %>"><%= item.loan.user.user_name %></a>
-          <% end %>
         </p>
       <% end %>
     <% end %>
